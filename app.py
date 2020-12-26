@@ -95,11 +95,11 @@ def webhook_handler():
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
         if not isinstance(event, MessageEvent):
-            show_fsm()  # add by me
             continue
         if not isinstance(event.message, TextMessage):
             continue
         if not isinstance(event.message.text, str):
+            show_fsm()  # add by me
             continue
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
