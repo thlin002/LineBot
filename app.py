@@ -102,7 +102,7 @@ def webhook_handler():
             continue
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
-        if event.message.text == "FSM"
+        if event.message.text == "FSM":
             image = {
                         "type": "image",
                         "originalContentUrl" : show_fsm(),
