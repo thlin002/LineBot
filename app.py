@@ -103,8 +103,7 @@ def webhook_handler():
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
-        print(f"\n\nWir verstehe nicht: {response}")     # debug added by me
-        if response == False:  # commented out by me for debug
+        if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
 
     return "OK"
@@ -117,5 +116,5 @@ def show_fsm():
 
 
 if __name__ == "__main__":
-    port = os.environ.get("PORT", 8000)\
+    port = os.environ.get("PORT", 8000)
     app.run(host="0.0.0.0", port=port, debug=True)
