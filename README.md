@@ -23,11 +23,13 @@ More details in the [Slides](https://hackmd.io/@TTW/ToC-2019-Project#) and [FAQ]
 ```sh
 pip3 install pipenv
 
-pipenv --three
-
-pipenv install
+pipenv --python 3.6
 
 pipenv shell
+
+pip install python-dev-tools
+
+pipenv install
 ```
 
 * pygraphviz (For visualizing Finite State Machine)
