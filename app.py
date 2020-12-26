@@ -103,9 +103,9 @@ def webhook_handler():
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
-        print(f"\n\nWir verstehe nicht!" + response)     # debug added by me
-#        if response == False:  # commented out by me for debug
-        send_text_message(event.reply_token, "Not Entering any State")
+        print(f"\n\nWir verstehe nicht: {response}")     # debug added by me
+        if response == False:  # commented out by me for debug
+            send_text_message(event.reply_token, "Not Entering any State")
 
     return "OK"
 
