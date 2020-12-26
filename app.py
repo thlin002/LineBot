@@ -99,11 +99,11 @@ def webhook_handler():
         if not isinstance(event.message, TextMessage):
             continue
         if not isinstance(event.message.text, str):
-            show_fsm()  # add by me
             continue
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
+        show_fsm()  # add by me
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
 
