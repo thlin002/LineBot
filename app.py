@@ -104,7 +104,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         response = machine.advance(event)
         print(f"\n\nWir verstehe nicht!" + response)     # debug added by me
-        if response == False:
+#        if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
 
     return "OK"
