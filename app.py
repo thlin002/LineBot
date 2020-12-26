@@ -102,6 +102,13 @@ def webhook_handler():
             continue
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
+        if event.message.text == "FSM"
+            image = {
+                        "type": "image",
+                        "originalContentUrl" : show_fsm(),
+                        "previewImageUrl" : show_fsm()
+                    }
+            send_text_message(event.reply_token, image)
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
