@@ -17,10 +17,10 @@ def send_text_message(reply_token, text):
 def send_image_url(usr_id, img_url):
     line_bot_api = LineBotApi(channel_access_token)
     image = {
-                "original_content_url": "https://imgur.com/gallery/DvRcRcC",
-                "preview_image_url": "https://imgur.com/gallery/DvRcRcC"
+                "original": "https://imgur.com/gallery/DvRcRcC",
+                "preview": "https://imgur.com/gallery/DvRcRcC"
             }
-    line_bot_api.push_message(usr_id, ImageSendMessage(image))
+    line_bot_api.push_message(usr_id, ImageSendMessage(original_content_url=image.original, preview_image_url=image.preview))
 #    try:
 #        line_bot_api.push_message(usr_id, TextSendMessage(text=text))
 #    except LineBotApiError as e:
