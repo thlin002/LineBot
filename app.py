@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from imgurpython import ImgurClient
+import requests
 
 from fsm import TocMachine
 from utils import send_text_message
@@ -37,6 +39,18 @@ machine = TocMachine(
 
 app = Flask(__name__, static_url_path="")
 
+# get imgur client_id and client_secret from your environment variable
+imgur_client_id = os.getenv("IMGUR_CLIENT_ID", None)
+imgur_client_secret = os.getenv("IMGUR_CLIENT_SECRET", None)
+imgur_access_token = "50653f2455d45f836604b2a8f06c914f7caaa837"
+imgur_refresh_token = "2e8d32394ffd417adee7b5462b97c7615a1c525d"
+if channel_secret is None:
+    print("Specify IMGUR_CHANNEL_ID as environment variable.")
+    sys.exit(1)
+if channel_access_token is None:
+    print("Specify IMGUR_CHANNEL_SECRET as environment variable.")
+    sys.exit(1)
+imgur_client = ImgurClient(imgur_client_id, imgur_client_secret, imgur_access_token, imgur_refresh_token)
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv("LINE_CHANNEL_SECRET", None)
@@ -102,13 +116,8 @@ def webhook_handler():
             continue
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
-        if event.message.text == "FSM":
-#            image = {
-#                        "type": "image",
-#                        "originalContentUrl" : show_fsm(),
-#                        "previewImageUrl" : show_fsm()
-#                    }
-            send_text_message(event.reply_token, show_fsm())
+        imgur_client.upload_from_path(show_fsm(), config=None, anon=True)
+        send_text_message(event.reply_token, "Not Entering any State")
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
