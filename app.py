@@ -8,6 +8,7 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 from imgurpython import ImgurClient
 import requests
+from PIL import Image
 
 from fsm import TocMachine
 from utils import send_text_message
@@ -126,10 +127,12 @@ def webhook_handler():
 
 @app.route("/show-fsm", methods=["GET"])
 def show_fsm():
-    machine.get_graph().draw("fsm.svg", prog="dot", format="svg")
-    return send_file("fsm.svg", mimetype="image/svg")
+    machine.get_graph().draw("fsm.png", prog="dot", format="png")
+    return send_file("fsm.png", mimetype="image/png")
 
 
 if __name__ == "__main__":
     port = os.environ.get("PORT", 8000)
     app.run(host="0.0.0.0", port=port, debug=True)
+    im = Image.open(show_fsm())
+    im.save(out)
