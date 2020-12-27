@@ -117,7 +117,7 @@ def webhook_handler():
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
         imgurl = imgur_client.upload_from_path(show_fsm(), config=None, anon=True)
-        send_text_message(event.reply_token, imgurl)
+#        send_text_message(event.reply_token, imgurl)
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
