@@ -104,6 +104,7 @@ def webhook_handler():
         print(f"REQUEST BODY: \n{body}")
         if  event.message.text == "FSM":
             send_image_url(event.source.user_id, "https://imgur.com/gallery/DvRcRcC")
+            continue
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
