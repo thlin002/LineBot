@@ -8,7 +8,6 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 from imgurpython import ImgurClient
 import requests
-from PIL import Image
 
 from fsm import TocMachine
 from utils import send_text_message
