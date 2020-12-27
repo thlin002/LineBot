@@ -44,10 +44,10 @@ imgur_client_id = os.getenv("IMGUR_CLIENT_ID", None)
 imgur_client_secret = os.getenv("IMGUR_CLIENT_SECRET", None)
 imgur_access_token = "50653f2455d45f836604b2a8f06c914f7caaa837"
 imgur_refresh_token = "2e8d32394ffd417adee7b5462b97c7615a1c525d"
-if channel_secret is None:
+if imgur_client_id is None:
     print("Specify IMGUR_CHANNEL_ID as environment variable.")
     sys.exit(1)
-if channel_access_token is None:
+if imgur_client_secret is None:
     print("Specify IMGUR_CHANNEL_SECRET as environment variable.")
     sys.exit(1)
 imgur_client = ImgurClient(imgur_client_id, imgur_client_secret, imgur_access_token, imgur_refresh_token)
