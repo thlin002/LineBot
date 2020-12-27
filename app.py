@@ -71,8 +71,6 @@ def callback():
             continue
         if not isinstance(event.message, TextMessage):
             continue
-        if  event.message.text == "FSM":
-            send_image_url(event.source.userId, "https://imgur.com/gallery/DvRcRcC")
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text)
         )
@@ -103,6 +101,8 @@ def webhook_handler():
             continue
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
+        if  event.message.text == "FSM":
+            send_image_url(event.source.userId, "https://imgur.com/gallery/DvRcRcC")
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
