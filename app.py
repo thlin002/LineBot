@@ -72,7 +72,7 @@ def callback():
         if not isinstance(event.message, TextMessage):
             continue
         if  event.message.text == "FSM":
-            send_image_url(event.source.userId, https://imgur.com/gallery/DvRcRcC)
+            send_image_url(event.source.userId, "https://imgur.com/gallery/DvRcRcC")
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text)
         )
