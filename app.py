@@ -94,8 +94,6 @@ def webhook_handler():
     usr_id = '';
     # if event is MessageEvent and message is TextMessage, then echo text
     for event in events:
-        if isinstance(event.source.userId, str):
-            usr_id = event.source.useId
         if not isinstance(event, MessageEvent):
             continue
         if not isinstance(event.message, TextMessage):
@@ -105,7 +103,7 @@ def webhook_handler():
         print(f"\nFSM STATE: {machine.state}")
         print(f"REQUEST BODY: \n{body}")
         if  event.message.text == "FSM":
-            send_image_url(usr_id, "https://imgur.com/gallery/DvRcRcC")
+            send_image_url(event.source.user_id, "https://imgur.com/gallery/DvRcRcC")
         response = machine.advance(event)
         if response == False:
             send_text_message(event.reply_token, "Not Entering any State")
