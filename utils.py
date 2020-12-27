@@ -21,11 +21,12 @@ def send_image_url(usr_id, img_url):
                 "originalContentUrl": "https://imgur.com/gallery/DvRcRcC",
                 "previewImageUrl": "https://imgur.com/gallery/DvRcRcC"
             }
-    try:
-        line_bot_api.push_message(usr_id, TextSendMessage(text=text))
-    except LineBotApiError as e:
-        abort(400)
-    return "OK"
+    line_bot_api.push_message(usr_id, TextSendMessage(text=text))
+#    try:
+#        line_bot_api.push_message(usr_id, TextSendMessage(text=text))
+#    except LineBotApiError as e:
+#        abort(400)
+#    return "OK"
 
 """
 def send_button_message(id, text, buttons):
