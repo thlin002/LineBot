@@ -13,17 +13,11 @@ def send_text_message(reply_token, text):
 
     return "OK"
 
-def send_image_url(usr_id, img_url):
-    line_bot_api = LineBotApi(channel_access_token)
-    text = {
-                "type": "image",
-                "originalContentUrl": "https://imgur.com/gallery/DvRcRcC",
-                "previewImageUrl": "https://imgur.com/gallery/DvRcRcC"
-            }
-    line_bot_api.push_message(usr_id, TextSendMessage(text=text))
-    return "OK"
 
 """
+def send_image_url(id, img_url):
+    pass
+
 def send_button_message(id, text, buttons):
     pass
 """

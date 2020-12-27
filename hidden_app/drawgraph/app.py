@@ -7,6 +7,8 @@ from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 
+from PIL import Image
+
 from fsm import TocMachine
 from utils import send_text_message
 
@@ -35,8 +37,7 @@ machine = TocMachine(
     show_conditions=True,
 )
 
-app = Flask(__name__, static_url_path="")
-
+app = Flask(__name__, static_url_path="")  # commented out by me
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv("LINE_CHANNEL_SECRET", None)
@@ -71,8 +72,7 @@ def callback():
             continue
         if not isinstance(event.message, TextMessage):
             continue
-        if  event.message.text == "FSM":
-            send_image_url(event.source.userId, https://imgur.com/gallery/DvRcRcC)
+
         line_bot_api.reply_message(
             event.reply_token, TextSendMessage(text=event.message.text)
         )
@@ -117,5 +117,7 @@ def show_fsm():
 
 
 if __name__ == "__main__":
+    im1 = Image.open(show_fsm())
+    im1 = im1.save("fsm.png")
     port = os.environ.get("PORT", 8000)
     app.run(host="0.0.0.0", port=port, debug=True)
