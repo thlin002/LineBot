@@ -17,8 +17,8 @@ def send_text_message(reply_token, text):
 def send_image_url(usr_id, img_url):
     line_bot_api = LineBotApi(channel_access_token)
     image = {
-                "original": "https://imgur.com/gallery/DvRcRcC",
-                "preview": "https://imgur.com/gallery/DvRcRcC"
+                "original": "https://i.imgur.com/8zbJ5bA.png",
+                "preview": "https://i.imgur.com/8zbJ5bA.png"
             }
     line_bot_api.push_message(usr_id, ImageSendMessage(original_content_url=image["original"], preview_image_url=image["preview"]))
 #    try:
