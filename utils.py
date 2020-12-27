@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, jsonify, request, abort, send_file
 from linebot import LineBotApi, WebhookParser
-from linebot.models import MessageEvent, TextMessage, TextSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 from linebot.exceptions import LineBotApiError
 
 channel_access_token = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", None)
@@ -16,12 +16,11 @@ def send_text_message(reply_token, text):
 
 def send_image_url(usr_id, img_url):
     line_bot_api = LineBotApi(channel_access_token)
-    text = {
-                "type": "image",
-                "originalContentUrl": "https://imgur.com/gallery/DvRcRcC",
-                "previewImageUrl": "https://imgur.com/gallery/DvRcRcC"
+    image = {
+                "original_content_url": "https://imgur.com/gallery/DvRcRcC",
+                "preview_image_url": "https://imgur.com/gallery/DvRcRcC"
             }
-    line_bot_api.push_message(usr_id, TextSendMessage(text=text))
+    line_bot_api.push_message(usr_id, ImageSendMessage(image))
 #    try:
 #        line_bot_api.push_message(usr_id, TextSendMessage(text=text))
 #    except LineBotApiError as e:
