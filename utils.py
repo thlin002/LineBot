@@ -20,7 +20,7 @@ def send_image_url(usr_id, img_url):
                 "original": "https://imgur.com/gallery/DvRcRcC",
                 "preview": "https://imgur.com/gallery/DvRcRcC"
             }
-    line_bot_api.push_message(usr_id, ImageSendMessage(original_content_url=image.original, preview_image_url=image.preview))
+    line_bot_api.push_message(usr_id, ImageSendMessage(original_content_url=image["original"], preview_image_url=image["preview"]))
 #    try:
 #        line_bot_api.push_message(usr_id, TextSendMessage(text=text))
 #    except LineBotApiError as e:
